@@ -1,0 +1,19 @@
+/*
+    this is a block comment
+*/
+//main method
+void main(){
+    int t1 = 12;
+    int t2 = 2 + 2;
+    sum(t1, t2);
+}
+
+/*
+
+    another block
+
+*/
+//line comment
+int sum(int v1, int v2){
+    return v1 + v2;
+}

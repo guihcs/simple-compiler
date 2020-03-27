@@ -1,0 +1,99 @@
+:start
+inclusion, start, '\n', ' ', '\t'
+inclusion, block_comment_start, '/'
+inclusion, str_start, '"'
+inclusion, number_start, digit
+inclusion, relop_start, '<', '>'
+inclusion, neg_start, '!'
+inclusion, assign_start, '='
+inclusion, arithmetic_start, '+', '-', '/', '*'
+inclusion, &start, '&'
+inclusion, |start, '|'
+inclusion, punctuation, '(', ')', '{', '}', ',', '[', ']', ';'
+inclusion, member_access, '.'
+inclusion, id_start, '_', alphanum
+inclusion, char_start, '''
+
+
+:block_comment_start
+inclusion, block_comment, '*'
+inclusion, line_comment, '/'
+
+:block_comment
+exclusion, block_comment, '*'
+inclusion, end_block_comment, '*'
+
+:end_block_comment
+inclusion, start, '/'
+any, block_comment
+
+:line_comment
+exclusion, line_comment, '\n'
+inclusion, start, '\n'
+
+:str_start
+exclusion, str_start, '"', '\n'
+inclusion, str, '"'
+
+:number_start
+inclusion, number_start, digit
+inclusion, decimal_start, '.'
+exclusion, number, digit
+
+:decimal_start
+inclusion, decimal_val, digit
+
+:decimal_val
+inclusion, decimal_val, digit
+exclusion, decimal, digit
+
+:relop_start
+inclusion, relop, '='
+exclusion, relop, '='
+
+:neg_start
+inclusion, relop, '='
+any, logic
+
+:assign_start
+inclusion, relop, '='
+any, assign
+
+:arithmetic_start
+inclusion, op_assign, '='
+any, arithmetic
+
+:&start
+inclusion, logic, '&'
+:|start
+inclusion, logic, '|'
+:char_start
+inclusion, escape_start, '\'
+exclusion, char_start, '''
+
+:char_start
+inclusion, escape_start, '\'
+exclusion, char_end, '\', '''
+
+:escape_start
+exclusion, char_end, ''', '\'
+
+:char_end
+inclusion, char, '''
+
+:id_start
+inclusion, id_start, alphanum
+exclusion, id, alphanum
+!
+str, string
+number, number
+decimal, decimal
+relop, relop
+logic, logic
+assign, assign
+op_assign, op_assign
+arithmetic, arithmetic
+punctuation, punctuation
+member_access, member_access
+char, char
+id, id
