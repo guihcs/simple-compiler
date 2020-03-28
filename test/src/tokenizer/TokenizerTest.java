@@ -1,7 +1,5 @@
-package src;
+package src.tokenizer;
 
-import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -10,10 +8,8 @@ import token.Token;
 import token.Tokenizer;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +28,7 @@ public class TokenizerTest {
 
 
     @ParameterizedTest
-    @CsvFileSource(resources = "../resources/token_test.txt")
+    @CsvFileSource(resources = "../../resources/token/token_test.txt")
     public void testToken(String input, String label) throws IOException {
         input = input.replaceAll("''", "\"");
         Tokenizer tokenizer = initTokenizer(input);
@@ -51,11 +47,14 @@ public class TokenizerTest {
 
 
 
-    @Test
-    public void testSimpleScript() throws IOException {
+    @ParameterizedTest
+    @CsvSource({
+            "test/resources/script/script-t1.txt, test/resources/script/token-t1.txt"
+    })
+    public void testScript(String scriptPath, String tokensPath) throws IOException {
 
-        String input = Files.readString(Path.of("test/resources/testscript1.txt"));
-        List<String> tokenLabels = Files.readAllLines(Path.of("test/resources/ts1tokens.txt"));
+        String input = Files.readString(Path.of(scriptPath));
+        List<String> tokenLabels = Files.readAllLines(Path.of(tokensPath));
         Tokenizer tokenizer = initTokenizer(input);
         List<Token> tokenList = new ArrayList<>();
         while (tokenizer.hasNext()){
