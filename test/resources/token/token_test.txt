@@ -28,13 +28,12 @@
 }, punctuation
 ;, punctuation
 ",", punctuation
-;, punctuation
 ., member_access
 'a', char
 '\0', char
 '\n', char
 _nemeusei, id
-loadToken, id
+loadToken , id
 double, keyword
 char, keyword
 if, keyword

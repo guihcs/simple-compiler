@@ -1,0 +1,9 @@
+:start
+index, include, string_start, '"'
+
+:string_start
+index, exclude, string_start, '"', '\n'
+index, include, string, '"'
+
+|
+string, string

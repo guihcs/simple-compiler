@@ -1,1 +1,125 @@
-:lab
+#initial state
+:start
+index, include, start, blank
+index, include, inner_string, '"'
+digit, exclude, number, digit
+index, include, inner_digit, digit
+'<', exclude, relop, '='
+'>', exclude, relop, '='
+index, include, <start, '<'
+index, include, >start, '>'
+'!', exclude, logic, '='
+index, include, relop_start, '!'
+'=', exclude, assign, '='
+index, include, relop_start, '='
+'*', exclude, arithmetic, '='
+'-', exclude, arithmetic, '=', '-'
+index, include, decrement_start, '-'
+'+', exclude, arithmetic, '=', '+'
+index, include, increment_start, '+'
+'/', exclude, arithmetic, '=', '/', '*'
+index, include, comment_start, '/'
+index, include, op_assign_start, '*', '/'
+index, include, address_start, '&'
+index, include, arithmetic, '%'
+'|', exclude, bitwise, '|'
+index, include, &start, '&'
+index, include, |start, '|'
+index, include, punctuation, '(', ')', '[', ']', '{', '}', ';', ','
+index, include, member_access, '.'
+index, include, char_start, '''
+alpha, exclude, id, '_', alphanum
+index, include, inner_id, '_', alphanum
+
+:inner_string
+index, exclude, inner_string, '"', '\n'
+index, include, string, '"'
+
+:inner_digit
+next, exclude, number, digit, '.'
+index, include, inner_decimal, '.'
+index, any, inner_digit
+
+:inner_decimal
+digit, exclude, decimal, digit
+index, include, inner_decimal, digit
+
+:<start
+index, include, relop, '='
+:>start
+index, include, relop, '='
+
+:relop_start
+index, include, relop, '='
+
+:op_assign_start
+index, include, op_assign, '='
+
+:&start
+index, include, logic, '&'
+:|start
+index, include, logic, '|'
+
+:char_start
+index, include, escaped_char, '\'
+index, any, inner_char
+
+:escaped_char
+index, any, inner_char
+
+:inner_char
+index, include, char, '''
+
+:inner_id
+next, exclude, id, '_', alphanum
+index, include, inner_id, '_', alphanum
+
+:comment_start
+index, include, line_comment, '/'
+index, include, block_comment, '*'
+index, include, op_assign, '='
+
+:line_comment
+index, exclude, line_comment, '\n'
+index, include, start, '\n'
+
+:block_comment
+index, include, block_end, '*'
+index, any, block_comment
+
+:block_end
+index, include, start, '/'
+index, any, block_comment
+
+:address_start
+index, include, logic, '&'
+alpha, exclude, address, '_', alphanum
+index, include, inner_address, '_', alpha
+
+:inner_address
+next, exclude, address, '_', alphanum
+index, include, inner_address, '_', alphanum
+
+:increment_start
+index, include, increment, '+'
+index, include, op_assign, '='
+:decrement_start
+index, include, decrement, '-'
+index, include, op_assign, '='
+
+|
+string
+number
+decimal
+relop
+assign
+arithmetic
+op_assign
+logic
+punctuation
+member_access
+char
+id
+address
+increment
+decrement
