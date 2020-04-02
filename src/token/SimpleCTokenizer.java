@@ -18,7 +18,7 @@ public class SimpleCTokenizer implements Tokenizer {
     private Set<String> keywords = Set.of(
             "double", "char", "int", "string", "true",
             "false", "if", "else", "for", "while", "void", "static", "return",
-            "do", "switch", "break", "case"
+            "do", "switch", "break", "case", "const"
     );
 
     public SimpleCTokenizer() {

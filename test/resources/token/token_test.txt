@@ -45,3 +45,10 @@ return, keyword
 static, keyword
 void, keyword
 while, keyword
+const, keyword
+<<, bitwise
+>>, bitwise
+++, increment
+--, decrement
+.4, decimal
+.12947924, decimal

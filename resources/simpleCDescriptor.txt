@@ -4,8 +4,8 @@ index, include, start, blank
 index, include, inner_string, '"'
 digit, exclude, number, digit
 index, include, inner_digit, digit
-'<', exclude, relop, '='
-'>', exclude, relop, '='
+'<', exclude, relop, '=', '<'
+'>', exclude, relop, '=', '>'
 index, include, <start, '<'
 index, include, >start, '>'
 '!', exclude, logic, '='
@@ -26,6 +26,7 @@ index, include, arithmetic, '%'
 index, include, &start, '&'
 index, include, |start, '|'
 index, include, punctuation, '(', ')', '[', ']', '{', '}', ';', ','
+'.', include, inner_decimal, digit
 index, include, member_access, '.'
 index, include, char_start, '''
 alpha, exclude, id, '_', alphanum
@@ -46,9 +47,10 @@ index, include, inner_decimal, digit
 
 :<start
 index, include, relop, '='
+index, include, bitwise, '<'
 :>start
 index, include, relop, '='
-
+index, include, bitwise, '>'
 :relop_start
 index, include, relop, '='
 
@@ -107,6 +109,7 @@ index, include, op_assign, '='
 index, include, decrement, '-'
 index, include, op_assign, '='
 
+
 |
 string
 number
@@ -123,3 +126,4 @@ id
 address
 increment
 decrement
+bitwise
